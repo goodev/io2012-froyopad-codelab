@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012 Google Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.android.honeypad"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="15" />
+
+    <application
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/HoneypadTheme" >
+
+        <!-- Activities for both phones and tablets -->
+
+        <activity
+            android:name=".ui.HomeActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.example.android.honeypad.ACTION_VIEW_NOTE" />
+            </intent-filter>
+        </activity>
+
+        <!-- Phone-only activities -->
+
+        <activity
+            android:name=".ui.EditNoteActivity"
+            android:label="@string/edit_note" >
+            <intent-filter>
+                <action android:name="com.example.android.honeypad.ACTION_VIEW_NOTE" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="vnd.android.cursor.item/vnd.honeypad.note" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.example.android.honeypad.ACTION_CREATE_NOTE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.HomeActivity" />
+        </activity>
+
+        <!-- Tablet-only activities -->
+
+
+        <!-- Content Provider -->
+        <provider
+            android:name=".provider.NotesProvider"
+            android:authorities="com.example.android.honeypad.provider.notesprovider" />
+
+        <!-- StackView AppWidget -->
+        <receiver
+            android:name=".appwidget.WidgetProvider"
+            android:label="@string/app_widget_name" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+
+        <!-- The service serving the RemoteViews to the collection widget -->
+        <service
+            android:name=".appwidget.WidgetService"
+            android:exported="true"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+    </application>
+
+</manifest>
