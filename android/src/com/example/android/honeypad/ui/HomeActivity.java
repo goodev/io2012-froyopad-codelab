@@ -16,13 +16,13 @@
 
 package com.example.android.honeypad.ui;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -31,7 +31,7 @@ import com.example.android.honeypad.provider.NotesProvider;
 import com.example.android.honeypad.ui.NoteListFragment.NoteEventsCallback;
 import com.example.android.honeypad.utils.UiUtils;
 
-public class HomeActivity extends Activity implements NoteEventsCallback {
+public class HomeActivity extends FragmentActivity implements NoteEventsCallback {
 
     // extra for the above action
     public static final String EXTRA_NOTE_ID = "noteId";
@@ -72,7 +72,7 @@ public class HomeActivity extends Activity implements NoteEventsCallback {
             case R.id.add_note:
                 if (mTwoPaneView) {
                     showNote(null);
-                    NoteListFragment list = (NoteListFragment) getFragmentManager()
+                    NoteListFragment list = (NoteListFragment) getSupportFragmentManager()
                             .findFragmentById(R.id.list);
                     list.clearActivation();
                     return true;
@@ -100,7 +100,7 @@ public class HomeActivity extends Activity implements NoteEventsCallback {
 
         if (mTwoPaneView) {
             // check if the NoteEditFragment has been added
-            FragmentManager fm = getFragmentManager();
+            FragmentManager fm = getSupportFragmentManager();
             NoteEditFragment edit = (NoteEditFragment) fm
                     .findFragmentByTag(NOTE_EDIT_TAG);
             final boolean editNoteAdded = (edit != null);
@@ -155,7 +155,7 @@ public class HomeActivity extends Activity implements NoteEventsCallback {
      */
     public void onNoteDeleted() {
         // remove the NoteEditFragment after a deletion
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         NoteEditFragment edit = (NoteEditFragment) fm
                 .findFragmentByTag(NOTE_EDIT_TAG);
         if (edit != null) {
@@ -168,7 +168,7 @@ public class HomeActivity extends Activity implements NoteEventsCallback {
 
     @Override
     public void onNoteCreated(Uri noteUri) {
-        NoteListFragment list = (NoteListFragment) getFragmentManager()
+        NoteListFragment list = (NoteListFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.list);
         list.setActivatedNoteAfterLoad(Long.valueOf(noteUri.getLastPathSegment()));
     }

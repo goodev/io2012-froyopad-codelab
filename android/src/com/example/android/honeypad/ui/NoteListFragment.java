@@ -16,16 +16,20 @@
 
 package com.example.android.honeypad.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
-import android.app.ListFragment;
-import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.Context;
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,16 +39,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import com.example.android.honeypad.R;
 import com.example.android.honeypad.appwidget.WidgetProvider;
 import com.example.android.honeypad.provider.NotesProvider;
 import com.example.android.honeypad.utils.UiUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class NoteListFragment extends ListFragment implements
         LoaderManager.LoaderCallbacks<Cursor>, OnItemLongClickListener, OnItemClickListener {

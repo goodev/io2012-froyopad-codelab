@@ -16,16 +16,16 @@
 
 package com.example.android.honeypad.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 
 import com.example.android.honeypad.R;
 import com.example.android.honeypad.ui.NoteListFragment.NoteEventsCallback;
 
-public class EditNoteActivity extends Activity implements NoteEventsCallback {
+public class EditNoteActivity extends FragmentActivity implements NoteEventsCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class EditNoteActivity extends Activity implements NoteEventsCallback {
 
         Intent launchingIntent = getIntent();
         if (launchingIntent != null && launchingIntent.getData() != null) {
-            NoteEditFragment nef = (NoteEditFragment) getFragmentManager().findFragmentById(
+            NoteEditFragment nef = (NoteEditFragment) getSupportFragmentManager().findFragmentById(
                     R.id.edit);
             nef.loadNote(launchingIntent.getData());
         }
