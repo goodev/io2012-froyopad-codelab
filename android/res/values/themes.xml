@@ -17,6 +17,6 @@
 
 <resources>
 
-    <style name="HoneypadTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar" />
+    <style name="HoneypadTheme" parent="@style/Theme.Sherlock.Light.DarkActionBar" />
 
 </resources>

@@ -20,18 +20,18 @@ import android.content.ContentUris;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Menu;
-import android.view.MenuItem;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.example.android.honeypad.R;
 import com.example.android.honeypad.provider.NotesProvider;
 import com.example.android.honeypad.ui.NoteListFragment.NoteEventsCallback;
 import com.example.android.honeypad.utils.UiUtils;
 
-public class HomeActivity extends FragmentActivity implements NoteEventsCallback {
+public class HomeActivity extends SherlockFragmentActivity implements NoteEventsCallback {
 
     // extra for the above action
     public static final String EXTRA_NOTE_ID = "noteId";
@@ -62,7 +62,7 @@ public class HomeActivity extends FragmentActivity implements NoteEventsCallback
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home, menu);
+        getSupportMenuInflater().inflate(R.menu.home, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -25,14 +25,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -41,12 +37,16 @@ import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.SherlockListFragment;
+import com.actionbarsherlock.view.ActionMode;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.example.android.honeypad.R;
 import com.example.android.honeypad.appwidget.WidgetProvider;
 import com.example.android.honeypad.provider.NotesProvider;
 import com.example.android.honeypad.utils.UiUtils;
 
-public class NoteListFragment extends ListFragment implements
+public class NoteListFragment extends SherlockListFragment implements
         LoaderManager.LoaderCallbacks<Cursor>, OnItemLongClickListener, OnItemClickListener {
 
     // containing Activity must implement this interface
@@ -277,7 +277,7 @@ public class NoteListFragment extends ListFragment implements
     }
 
     private void startContextualActionMode() {
-        mMode = getActivity().startActionMode(new NotesListActionMode());
+        mMode = getSherlockActivity().startActionMode(new NotesListActionMode());
         setSelectedCount();
     }
 
@@ -319,7 +319,7 @@ public class NoteListFragment extends ListFragment implements
 
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            getActivity().getMenuInflater().inflate(R.menu.notes_list_context, menu);
+            getSherlockActivity().getSupportMenuInflater().inflate(R.menu.notes_list_context, menu);
             return true;
         }
 

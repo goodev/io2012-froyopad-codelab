@@ -19,19 +19,19 @@ package com.example.android.honeypad.ui;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.view.MenuItem;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.example.android.honeypad.R;
 import com.example.android.honeypad.ui.NoteListFragment.NoteEventsCallback;
 
-public class EditNoteActivity extends FragmentActivity implements NoteEventsCallback {
+public class EditNoteActivity extends SherlockFragmentActivity implements NoteEventsCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_note);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent launchingIntent = getIntent();
         if (launchingIntent != null && launchingIntent.getData() != null) {

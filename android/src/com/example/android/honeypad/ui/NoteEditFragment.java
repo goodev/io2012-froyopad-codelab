@@ -20,24 +20,24 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.example.android.honeypad.R;
 import com.example.android.honeypad.appwidget.WidgetProvider;
 import com.example.android.honeypad.provider.NotesProvider;
 import com.example.android.honeypad.ui.NoteListFragment.NoteEventsCallback;
 import com.example.android.honeypad.utils.UiUtils;
 
-public class NoteEditFragment extends Fragment {
+public class NoteEditFragment extends SherlockFragment {
 
     // launch actions
     public static final String ACTION_CREATE_NOTE = "com.example.android.honeypad.ACTION_CREATE_NOTE";
