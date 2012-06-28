@@ -16,6 +16,7 @@
 
 package com.example.android.honeypad.utils;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -45,6 +46,7 @@ public class UiUtils {
         return atLeastHoneycomb() && isTablet(context);
     }
 
+    @TargetApi(11)
     public static void setActivatedCompat(View view, boolean activated) {
         if (atLeastHoneycomb()) {
             view.setActivated(activated);
