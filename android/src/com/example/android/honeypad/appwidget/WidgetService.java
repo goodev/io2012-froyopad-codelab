@@ -16,6 +16,7 @@
 
 package com.example.android.honeypad.appwidget;
 
+import android.annotation.TargetApi;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +32,7 @@ import com.example.android.honeypad.ui.HomeActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+@TargetApi(11)
 public class WidgetService extends RemoteViewsService {
 
     private class StackRemoteViewsFactory implements

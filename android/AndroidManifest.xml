@@ -81,7 +81,8 @@
         <!-- StackView AppWidget -->
         <receiver
             android:name=".appwidget.WidgetProvider"
-            android:label="@string/app_widget_name" >
+            android:label="@string/app_widget_name"
+            android:enabled="@bool/postHoneycomb" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -95,7 +96,8 @@
         <service
             android:name=".appwidget.WidgetService"
             android:exported="true"
-            android:permission="android.permission.BIND_REMOTEVIEWS" />
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+            android:enabled="@bool/postHoneycomb" />
     </application>
 
 </manifest>

@@ -16,6 +16,7 @@
 
 package com.example.android.honeypad.appwidget;
 
+import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -28,14 +29,18 @@ import android.widget.RemoteViews;
 import com.example.android.honeypad.R;
 import com.example.android.honeypad.ui.HomeActivity;
 import com.example.android.honeypad.ui.NoteEditFragment;
+import com.example.android.honeypad.utils.UiUtils;
 
+@TargetApi(11)
 public class WidgetProvider extends AppWidgetProvider {
 
     public static void updateWidget(Context ctx) {
-        AppWidgetManager awm = AppWidgetManager.getInstance(ctx);
-        awm.notifyAppWidgetViewDataChanged(awm
-                .getAppWidgetIds(new ComponentName(ctx,
-                        WidgetProvider.class)), R.id.stack_view);
+		if (UiUtils.atLeastHoneycomb()) {
+			AppWidgetManager awm = AppWidgetManager.getInstance(ctx);
+			awm.notifyAppWidgetViewDataChanged(awm
+					.getAppWidgetIds(new ComponentName(ctx,
+							WidgetProvider.class)), R.id.stack_view);
+		}
     }
 
     @Override
